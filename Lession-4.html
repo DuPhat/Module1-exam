@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lí công nhân</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+        width: 80%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Quản lí công nhân</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Họ và tên</th>
+          <th>Ngày sinh</th>
+          <th>Địa chỉ</th>
+          <th>Lương</th>
+          <th>Chức vụ</th>
+        </tr>
+      </thead>
+      <tbody id="bangCongNhan"></tbody>
+    </table>
+    <script>
+      var danhSachCongNhan = [
+        {
+          stt: 1,
+          hoTen: "Nguyễn Đình Chí Bảo",
+          ngaySinh: "10-09-2002",
+          diaChi: "Quảng Nam",
+          luong: 10000000,
+          chucVu: "Quản lí",
+        },
+        {
+          stt: 2,
+          hoTen: "Võ Thành Thái",
+          ngaySinh: "15-11-2003",
+          diaChi: "Đà Nẵng",
+          luong: 8000000,
+          chucVu: "Nhân viên bán hàng",
+        },
+        {
+          stt: 3,
+          hoTen: "Sơn Ngọc Phát",
+          ngaySinh: "12-11-2000",
+          diaChi: "Huế",
+          luong: 9000000,
+          chucVu: "Thu Ngân",
+        },
+        {
+          stt: 4,
+          hoTen: "Phạm Nhựt Minh",
+          ngaySinh: "12-02-2003",
+          diaChi: "Cà Mau",
+          luong: 9000000,
+          chucVu: "Thu Ngân",
+        },
+        {
+          stt: 5,
+          hoTen: "Lê Dương Bảo Lâm",
+          ngaySinh: "12-11-1990",
+          diaChi: "Hậu Giang",
+          luong: 20000000,
+          chucVu: "Trưởng phòng",
+        },
+        {
+          stt: 6,
+          hoTen: "Dương Quốc Tuấn",
+          ngaySinh: "22-01-1994",
+          diaChi: "Đà Lạt",
+          luong: 8000000,
+          chucVu: "Nhân viên bán hàng",
+        },
+        {
+          stt: 7,
+          hoTen: "Lê Minh Vũ",
+          ngaySinh: "20-10-2004",
+          diaChi: "Bình Định",
+          luong: 9000000,
+          chucVu: "Kế Toán",
+        },
+        {
+          stt: 8,
+          hoTen: "Du Tấn Phát",
+          ngaySinh: "26-11-2000",
+          diaChi: "Cà Mau",
+          luong: 9000000,
+          chucVu: "Nhân viên bán hàng",
+        },
+        {
+          stt: 9,
+          hoTen: "Nguyễn Thị Như Ngọc",
+          ngaySinh: "20-10-2003",
+          diaChi: "Quảng Trị",
+          luong: 9000000,
+          chucVu: "Thu Ngân",
+        },
+        {
+          stt: 10,
+          hoTen: "Ngô Thị Linh",
+          ngaySinh: "12-11-1999",
+          diaChi: "Huế",
+          luong: 9000000,
+          chucVu: "Nhân viên bán hàng",
+        },
+      ];
+
+      function layTen(hoTen) {
+        var mang = hoTen.split(" ");
+        return mang[mang.length - 1].toLowerCase();
+      }
+
+      danhSachCongNhan.sort(function (a, b) {
+        var tenA = layTen(a.hoTen);
+        var tenB = layTen(b.hoTen);
+        if (tenA > tenB) return 1;
+        if (tenA < tenB) return -1;
+        return 0;
+      });
+
+      var tableBody = document.getElementById("bangCongNhan");
+
+      for (var i = 0; i < danhSachCongNhan.length; i++) {
+        var cn = danhSachCongNhan[i];
+
+        var row = "<tr>";
+        row += "<td>" + (i + 1) + "</td>"; // Gán lại STT theo chỉ số mảng
+        row += "<td>" + cn.hoTen + "</td>";
+        row += "<td>" + cn.ngaySinh + "</td>";
+        row += "<td>" + cn.diaChi + "</td>";
+        row += "<td>" + cn.luong + "</td>";
+        row += "<td>" + cn.chucVu + "</td>";
+        row += "</tr>";
+
+        tableBody.innerHTML += row;
+      }
+    </script>
+  </body>
+</html>

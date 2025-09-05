@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      function tinhSoNgayTrongThang(chuoi) {
+        // Kiểm tra định dạng có đúng không (MM/yyyy)
+        if (chuoi.length !== 7 || chuoi.charAt(2) !== "/") {
+          return "Chuỗi sai định dạng!";
+        }
+
+        // Tách tháng và năm
+        let thang = parseInt(chuoi.substring(0, 2));
+        let nam = parseInt(chuoi.substring(3));
+
+        // Kiểm tra giá trị tháng có hợp lệ không
+        if (thang < 1 || thang > 12) {
+          return "Tháng không hợp lệ!";
+        }
+
+        // Xử lý số ngày
+        let ngay = 31;
+
+        if (thang === 4 || thang === 6 || thang === 9 || thang === 11) {
+          ngay = 30;
+        } else if (thang === 2) {
+          // Kiểm tra năm nhuận
+          if ((nam % 4 === 0 && nam % 100 != 0) || nam % 400 == 0) {
+            ngay = 29;
+          } else {
+            ngay = 28;
+          }
+        }
+
+        return ngay;
+      }
+
+      // Test thử
+      console.log(tinhSoNgayTrongThang("01/2020")); // 31
+      console.log(tinhSoNgayTrongThang("02/2020")); // 29
+      console.log(tinhSoNgayTrongThang("02/2021")); // 28
+      console.log(tinhSoNgayTrongThang("13/2023")); // Tháng không hợp lệ!
+    </script>
+  </body>
+</html>
