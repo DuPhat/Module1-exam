@@ -6,25 +6,40 @@
     <title>Số hoàn hảo</title>
   </head>
   <body>
+    <h1>Kiểm tra số hoàn hảo</h1>
+
+    <!-- Input và nút -->
+    <input type="number" id="soNhap" placeholder="Nhập số..." />
+    <button onclick="kiemTra()">Kiểm tra</button>
+
+    <p id="ketQua"></p>
+
     <script>
       function kiemTraSoHoanHao(n) {
-        
         let tongUoc = 0;
-
         for (let i = 1; i < n; i++) {
           if (n % i === 0) {
             tongUoc += i;
           }
         }
+        return tongUoc === n;
+      }
 
-        if (tongUoc === n) {
-          return true;
+      function kiemTra() {
+        let n = parseInt(document.getElementById("soNhap").value);
+        let ketQua = document.getElementById("ketQua");
+
+        if (isNaN(n) || n <= 0) {
+          ketQua.textContent = "Vui lòng nhập số nguyên dương!";
+          return;
+        }
+
+        if (kiemTraSoHoanHao(n)) {
+          ketQua.textContent = n + " là số hoàn hảo";
         } else {
-          return false;
+          ketQua.textContent = n + " không phải số hoàn hảo";
         }
       }
-      console.log(kiemTraSoHoanHao(6)); //true
-      console.log(kiemTraSoHoanHao(9)); //false
     </script>
   </body>
 </html>
